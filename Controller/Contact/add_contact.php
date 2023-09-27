@@ -1,16 +1,41 @@
 <?php
 require_once '../../Model/database.php';
 
+/**
+ * Classe ContactController
+ *
+ * @package Controller
+ */
 class ContactController
 {
+    /**
+     * @var conn A conexão com o banco de dados.
+     */
     private $conn;
 
+    /**
+     * Construtor da classe ContactController.
+     */
     public function __construct()
     {
         $database = new Database();
         $this->conn = $database->connect();
     }
 
+    /**
+     * Adiciona um novo contato ao banco de dados.
+     *
+     * @param string $contact_name.
+     * @param string $contact_datebirth.
+     * @param string $contact_email.
+     * @param string $contact_profession.
+     * @param string $contact_phone.
+     * @param int $phone_whatsapp.
+     * @param int $send_notification_email.
+     * @param int $send_notification_sms.
+     * @param string $contact_telephone.
+     * @return bool
+     */
     public function addContact($contact_name, $contact_datebirth, $contact_email, $contact_profession, $contact_phone, $phone_whatsapp, $send_notification_email, $send_notification_sms, $contact_telephone)
     {
         $contact_datebirth = date('Y-m-d', strtotime(str_replace('/', '-', $contact_datebirth)));

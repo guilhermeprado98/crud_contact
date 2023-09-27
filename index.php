@@ -14,8 +14,7 @@ require_once 'Model/database.php';
    <link rel="stylesheet" href="include/css/style.css">
    <script src="include/js/jquery-3.7.1.min.js"></script>
    <script src="include/js/bootstrap.bundle.min.js"></script>
-   <style>
-   </style>
+
    <script>
    function formatarData() {
       const dataNascimentoInput = document.getElementById('dataNascimento');
@@ -42,6 +41,21 @@ require_once 'Model/database.php';
          return;
       }
    }
+
+   function highlightLabel(input) {
+      const label = input.parentElement.querySelector('label');
+      if (label) {
+         label.classList.add('highlight');
+      }
+   }
+
+
+   function unhighlightLabel(input) {
+      const label = input.parentElement.querySelector('label');
+      if (label) {
+         label.classList.remove('highlight');
+      }
+   }
    </script>
 </head>
 
@@ -56,33 +70,38 @@ require_once 'Model/database.php';
             <div class="form-group col-md-6">
                <label for="nomeCompleto">Nome Completo</label>
                <input type="text" class="form-control" name="nomeCompleto" placeholder="Ex.: Letícia Pacheco dos Santos"
-                  required>
+                  onfocus="highlightLabel(this)" onblur="unhighlightLabel(this)" required>
             </div>
             <div class="form-group col-md-6">
                <label for="dataNascimento">Data de Nascimento</label>
                <input type="text" class="form-control" name="dataNascimento" placeholder="Ex.: 03/10/2003"
-                  onblur="formatarData()" onkeypress="if(event.keyCode==13) { formatarData(); return false; }" required>
+                  onfocus="highlightLabel(this)" onblur="unhighlightLabel(this)" required>
             </div>
          </div>
+
          <div class="form-row">
             <div class="form-group col-md-6">
                <label for="email">E-mail</label>
                <input type="email" class="form-control" name="email" placeholder="Ex.: leticia@gmail.com"
-                  onblur="validarEmail()" required>
+                  onfocus="highlightLabel(this)" onblur="unhighlightLabel(this)" required>
             </div>
             <div class="form-group col-md-6">
                <label for="profissao">Profissão</label>
-               <input type="text" class="form-control" name="profissao" placeholder="Ex.: Desenvolvedora Web" required>
+               <input type="text" class="form-control" name="profissao" placeholder="Ex.: Desenvolvedora Web"
+                  onfocus="highlightLabel(this)" onblur="unhighlightLabel(this)" required>
             </div>
          </div>
+
          <div class="form-row">
             <div class="form-group col-md-6">
                <label for="celular">Celular para Contato</label>
-               <input type="tel" class="form-control" name="celular" placeholder="Ex.: (11) 98493-2039" required>
+               <input type="tel" class="form-control" name="celular" placeholder="Ex.: (11) 98493-2039"
+                  onfocus="highlightLabel(this)" onblur="unhighlightLabel(this)" required>
             </div>
             <div class="form-group col-md-6">
                <label for="telefone">Telefone para Contato</label>
-               <input type="tel" class="form-control" name="telefone" placeholder="Ex.: (11) 4033-2019" required>
+               <input type="tel" class="form-control" name="telefone" placeholder="Ex.: (11) 4033-2019"
+                  onfocus="highlightLabel(this)" onblur="unhighlightLabel(this)" required>
             </div>
          </div>
 
