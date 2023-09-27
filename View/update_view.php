@@ -39,6 +39,21 @@ require_once '../Controller/classContact.php';
          return;
       }
    }
+
+   function highlightLabel(input) {
+      const label = input.parentElement.querySelector('label');
+      if (label) {
+         label.classList.add('highlight');
+      }
+   }
+
+
+   function unhighlightLabel(input) {
+      const label = input.parentElement.querySelector('label');
+      if (label) {
+         label.classList.remove('highlight');
+      }
+   }
    </script>
 </head>
 
@@ -66,34 +81,41 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
       <div class="form-row">
          <div class="form-group col-md-6">
             <label for="nomeCompleto">Nome Completo</label>
-            <input type="text" class="form-control" value="<?=$contactData[0]['contact_name']?>" name="nomeCompleto">
+            <input type="text" class="form-control" value="<?=$contactData[0]['contact_name']?>" name="nomeCompleto"
+               onfocus="highlightLabel(this)" onblur="unhighlightLabel(this)">
          </div>
          <div class="form-group col-md-6">
             <label for="dataNascimento">Data de Nascimento</label>
             <input type="text" class="form-control"
                value="<?=date('d/m/Y', strtotime($contactData[0]['contact_datebirth']))?>" name="dataNascimento"
-               onblur="formatarData()" onkeypress="if(event.keyCode==13) { formatarData(); return false; }">
+               onblur="formatarData()" onkeypress="if(event.keyCode==13) { formatarData(); return false; }"
+               onfocus="highlightLabel(this)" onblur="unhighlightLabel(this)">
          </div>
       </div>
       <div class="form-row">
+
          <div class="form-group col-md-6">
             <label for="email">E-mail</label>
             <input type="email" class="form-control" value="<?=$contactData[0]['contact_email']?>" name="email"
-               onblur="validarEmail()">
+               placeholder="Ex.: leticia@gmail.com" onfocus="highlightLabel(this)" onblur="unhighlightLabel(this)"
+               required>
          </div>
          <div class="form-group col-md-6">
             <label for="profissao">Profissão</label>
-            <input type="text" class="form-control" value="<?=$contactData[0]['contact_profession']?>" name="profissao">
+            <input type="text" class="form-control" value="<?=$contactData[0]['contact_profession']?>" name="profissao"
+               onfocus="highlightLabel(this)" onblur="unhighlightLabel(this)">
          </div>
       </div>
       <div class="form-row">
          <div class="form-group col-md-6">
             <label for="celular">Celular para Contato</label>
-            <input type="tel" class="form-control" value="<?=$contactData[0]['contact_phone']?>" name="celular">
+            <input type="tel" class="form-control" value="<?=$contactData[0]['contact_phone']?>" name="celular"
+               onfocus="highlightLabel(this)" onblur="unhighlightLabel(this)">
          </div>
          <div class="form-group col-md-6">
             <label for="telefone">Telefone para Contato</label>
-            <input type="tel" class="form-control" value="<?=$contactData[0]['contact_telephone']?>" name="telefone">
+            <input type="tel" class="form-control" value="<?=$contactData[0]['contact_telephone']?>" name="telefone"
+               onfocus="highlightLabel(this)" onblur="unhighlightLabel(this)">
          </div>
       </div>
 
