@@ -1,7 +1,16 @@
+<?php
+require_once 'Controller/classContact.php';
+require_once 'Model/database.php';
+
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 
 <head>
+   <title>Gerenciamento de Contatos</title>
    <link rel="stylesheet" href="include/css/bootstrap.min.css">
    <link rel="stylesheet" href="include/css/style.css">
    <script src="include/js/jquery-3.7.1.min.js"></script>
@@ -43,59 +52,60 @@
       <span class="span-title">Cadastro de Contatos</span>
    </div>
    <div class="container">
-      <form>
+      <form method="post" action="Controller/Contact/add_contact.php">
          <div class="form-row">
             <div class="form-group col-md-6">
                <label for="nomeCompleto">Nome Completo</label>
-               <input type="text" class="form-control" id="nomeCompleto" placeholder="Ex.: Letícia Pacheco dos Santos">
+               <input type="text" class="form-control" name="nomeCompleto" placeholder="Ex.: Letícia Pacheco dos Santos"
+                  required>
             </div>
             <div class="form-group col-md-6">
                <label for="dataNascimento">Data de Nascimento</label>
-               <input type="text" class="form-control" id="dataNascimento" placeholder="Ex.: 03/10/2003"
-                  onblur="formatarData()" onkeypress="if(event.keyCode==13) { formatarData(); return false; }">
+               <input type="text" class="form-control" name="dataNascimento" placeholder="Ex.: 03/10/2003"
+                  onblur="formatarData()" onkeypress="if(event.keyCode==13) { formatarData(); return false; }" required>
             </div>
          </div>
          <div class="form-row">
             <div class="form-group col-md-6">
                <label for="email">E-mail</label>
-               <input type="email" class="form-control" id="email" placeholder="Ex.: leticia@gmail.com"
-                  onblur="validarEmail()">
+               <input type="email" class="form-control" name="email" placeholder="Ex.: leticia@gmail.com"
+                  onblur="validarEmail()" required>
             </div>
             <div class="form-group col-md-6">
                <label for="profissao">Profissão</label>
-               <input type="text" class="form-control" id="profissao" placeholder="Ex.: Desenvolvedora Web">
+               <input type="text" class="form-control" name="profissao" placeholder="Ex.: Desenvolvedora Web" required>
             </div>
          </div>
          <div class="form-row">
             <div class="form-group col-md-6">
                <label for="celular">Celular para Contato</label>
-               <input type="tel" class="form-control" id="celular" placeholder="Ex.: (11) 98493-2039">
+               <input type="tel" class="form-control" name="celular" placeholder="Ex.: (11) 98493-2039" required>
             </div>
             <div class="form-group col-md-6">
                <label for="telefone">Telefone para Contato</label>
-               <input type="tel" class="form-control" id="telefone" placeholder="Ex.: (11) 4033-2019">
+               <input type="tel" class="form-control" name="telefone" placeholder="Ex.: (11) 4033-2019" required>
             </div>
          </div>
 
          <div class="form-row">
             <div class="form-group col-md-6">
-               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-               <label class="form-check-label" for="flexCheckDefault">
+               <input class="form-check-input" type="checkbox" value="" name="flexCheckDefault1">
+               <label class="form-check-label" for="flexCheckDefault1">
                   Número de celular possui Whatsapp
                </label>
             </div>
 
             <div class="form-group col-md-6">
-               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-               <label class="form-check-label" for="flexCheckDefault">
+               <input class="form-check-input" type="checkbox" value="" name="flexCheckDefault2">
+               <label class="form-check-label" for="flexCheckDefault2">
                   Enviar notificações por E-mail
                </label>
             </div>
          </div>
          <div class="form-row">
             <div class="form-group col-md-6">
-               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-               <label class="form-check-label" for="flexCheckDefault">
+               <input class="form-check-input" type="checkbox" value="" name="flexCheckDefault3">
+               <label class="form-check-label" for="flexCheckDefault3">
                   Enviar notificações por SMS
                </label>
             </div>
@@ -119,16 +129,22 @@
       </thead>
       <tbody>
          <?php
-$dados = array();
+$contact = new Contact();
+$dados = $contact->getContacts();
 foreach ($dados as $dado): ?>
          <tr>
-            <td><?=$dado['nome'];?></td>
-            <td><?=$dado['data_nascimento'];?></td>
-            <td><?=$dado['email'];?></td>
-            <td><?=$dado['celular'];?></td>
+            <td><?=$dado['contact_name'];?></td>
+            <td><?=date('d/m/Y', strtotime($dado['contact_datebirth']));?></td>
+            <td><?=$dado['contact_email'];?></td>
+            <td><?=$dado['contact_phone'];?></td>
             <td>
-               <img src="assets/editar.png"></img>
-               <img src="assets/excluir.png"></img>
+
+               <a href="View/update_view.php">
+                  <img src="assets/editar.png" alt="Editar">
+               </a>
+               <a href="Controller/Contact/delete_contact.php?id=<?=$dado['id'];?>">
+                  <img src="assets/excluir.png" alt="Excluir">
+               </a>
             </td>
          </tr>
          <?php endforeach;?>

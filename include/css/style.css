@@ -8,6 +8,7 @@ hr{
    color: white;
    text-align: center;
    margin-top: 70px;
+   border-radius: 0.5em;
 }
 .div-footer{
    display: flex;
@@ -49,6 +50,7 @@ margin-top: 50px;
  color: white;
 }
 
+
 .table{
    border-right: 1px solid #dee2e6;
    border-left: 1px solid #dee2e6;
@@ -79,6 +81,12 @@ margin-top: 50px;
 }
 .btn-primary{
    margin-right: 35px;
+}
+.form-control{
+   border-right: 0;
+  border-top: 0;
+  border-left: 0;
+  border-radius: 0;
 }
 
 .form-row > .col, .form-row > [class*="col-"] {
