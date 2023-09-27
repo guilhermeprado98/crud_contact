@@ -84,12 +84,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
             <input type="text" class="form-control" value="<?=$contactData[0]['contact_name']?>" name="nomeCompleto"
                onfocus="highlightLabel(this)" onblur="unhighlightLabel(this)">
          </div>
+
          <div class="form-group col-md-6">
             <label for="dataNascimento">Data de Nascimento</label>
             <input type="text" class="form-control"
                value="<?=date('d/m/Y', strtotime($contactData[0]['contact_datebirth']))?>" name="dataNascimento"
-               onblur="formatarData()" onkeypress="if(event.keyCode==13) { formatarData(); return false; }"
-               onfocus="highlightLabel(this)" onblur="unhighlightLabel(this)">
+               placeholder="Ex.: 03/10/2003" onfocus="highlightLabel(this)" onblur="unhighlightLabel(this)" required>
          </div>
       </div>
       <div class="form-row">
