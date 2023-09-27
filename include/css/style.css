@@ -31,6 +31,7 @@ font-weight: 600;
 .btn-primary{
    float: right;
    font-weight: 600;
+   margin-right: 35px;
 }
 .container{
 margin-top: 50px;
@@ -65,9 +66,6 @@ margin-top: 50px;
      max-width: 1500px !important;
    }
 }
-.btn-primary{
-   margin-right: 35px;
-}
 
 @media (min-width: 496px) {
    #text-footer {
@@ -81,6 +79,11 @@ margin-top: 50px;
 }
 .btn-primary{
    margin-right: 35px;
+}
+.btn-secondary{
+   margin-right: 40px;
+   float: right;
+   font-weight: 600;
 }
 .form-control{
    border-right: 0;

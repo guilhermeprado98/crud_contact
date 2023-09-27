@@ -1,10 +1,9 @@
 <?php
+
 require_once 'Controller/classContact.php';
 require_once 'Model/database.php';
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html>
@@ -139,7 +138,7 @@ foreach ($dados as $dado): ?>
             <td><?=$dado['contact_phone'];?></td>
             <td>
 
-               <a href="View/update_view.php">
+               <a href="View/update_view.php?id=<?=$dado['id'];?>">
                   <img src="assets/editar.png" alt="Editar">
                </a>
                <a href="Controller/Contact/delete_contact.php?id=<?=$dado['id'];?>">

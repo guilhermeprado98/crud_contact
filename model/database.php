@@ -1,12 +1,4 @@
 <?php
-/*
-Class de Conexão ao banco de dados
-@host
-@username
-@password
-@database
-@conn
- */
 class Database
 {
     private $host = 'localhost';
